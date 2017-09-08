@@ -38,8 +38,12 @@ def setup_package():
         install_requires=list(get_requirements('requirements.txt')),
         packages=get_packages(),
         entry_points={
-            'pygments.filters': [],
-            'pygments.formatters': [],
+            'pygments.filters': [
+                'md_heading = custom_pygments_modules.filters:MarkdownHeadingText'
+            ],
+            'pygments.formatters': [
+                # 'foo = custom_pygments_modules.formatters:TerminalFormatter',
+            ],
             'pygments.lexers': [],
             'pygments.styles': [
                 'xoria256 = custom_pygments_modules.styles:Xoria',
