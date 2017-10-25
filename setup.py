@@ -4,6 +4,17 @@ from setuptools import setup
 from setuptools import find_packages
 
 
+FILTERS = {
+    'md_heading': 'filters:MarkdownHeadingText',
+    'md_code_indent': 'filters:MarkdownCodeFenceIndent',
+}
+
+STYLES = {
+    'xoria256': 'styles:Xoria',
+    'onedark': 'styles:OneDark',
+}
+
+
 def get_packages():
     """ List of (sub)packages to install. """
     return find_packages('.', include=('custom_pygments_modules', ))
@@ -39,15 +50,15 @@ def setup_package():
         packages=get_packages(),
         entry_points={
             'pygments.filters': [
-                'md_heading = custom_pygments_modules.filters:MarkdownHeadingText'
-            ],
+                '{0} = custom_pygments_modules.{1}'.format(k, v)
+                for k, v in FILTERS.items()],
             'pygments.formatters': [
                 # 'foo = custom_pygments_modules.formatters:TerminalFormatter',
             ],
             'pygments.lexers': [],
             'pygments.styles': [
-                'xoria256 = custom_pygments_modules.styles:Xoria',
-            ],
+                '{0} = custom_pygments_modules.{1}'.format(k, v)
+                for k, v in STYLES.items()],
         },
     )
 
