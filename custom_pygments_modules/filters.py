@@ -37,15 +37,6 @@ class MarkdownCodeFence(Filter):
         lineno = 0
 
         for ttype, value in stream:
-            if (in_code_fence and ttype not in (Text, String)):
-                # Temporary fix for pygments issue #1389
-                #
-                # This bug causes the ending code fence from being eaten by the
-                # Markdown lexer if the code hint does not contain a language
-                # that has a matching lexer.
-                in_code_fence = False
-                yield self.exit_code_fence(String, '```\n')
-
             if ttype == String and value.rstrip() == '```':
                 in_code_fence = not in_code_fence
 

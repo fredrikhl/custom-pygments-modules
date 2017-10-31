@@ -11,7 +11,9 @@ FILTERS = {
 
 FORMATTERS = {}
 
-LEXERS = {}
+LEXERS = {
+    'markdown': 'markdown_lexer:CustomMarkdownLexer',
+}
 
 STYLES = {
     'xoria256': 'styles:Xoria',
