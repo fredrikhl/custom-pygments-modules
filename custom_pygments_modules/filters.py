@@ -1,15 +1,17 @@
-from pygments.util import get_bool_opt
-from pygments.token import Name
+# encoding: utf-8
+from __future__ import print_function
+
+# from pygments.util import get_bool_opt
 from pygments.filter import Filter
 
 from pygments.token import (
     Comment,
-    Error,
+    # Error,
     Generic,
     Keyword,
-    Name,
-    Number,
-    Operator,
+    # Name,
+    # Number,
+    # Operator,
     String,
     Text,
     Token,
