@@ -9,10 +9,20 @@ FILTERS = {
     'md_code_indent': 'filters:MarkdownCodeFenceIndent',
 }
 
+FORMATTERS = {}
+
+LEXERS = {}
+
 STYLES = {
     'xoria256': 'styles:Xoria',
     'onedark': 'styles:OneDark',
 }
+
+
+def dict_to_entry_points(d):
+    return [
+        '{0} = custom_pygments_modules.{1}'.format(k, v)
+        for k, v in sorted(d.items())],
 
 
 def get_packages():
@@ -49,16 +59,10 @@ def setup_package():
         install_requires=list(get_requirements('requirements.txt')),
         packages=get_packages(),
         entry_points={
-            'pygments.filters': [
-                '{0} = custom_pygments_modules.{1}'.format(k, v)
-                for k, v in FILTERS.items()],
-            'pygments.formatters': [
-                # 'foo = custom_pygments_modules.formatters:TerminalFormatter',
-            ],
-            'pygments.lexers': [],
-            'pygments.styles': [
-                '{0} = custom_pygments_modules.{1}'.format(k, v)
-                for k, v in STYLES.items()],
+            'pygments.filters': dict_to_entry_points(FILTERS),
+            'pygments.formatters': dict_to_entry_points(FORMATTERS),
+            'pygments.lexers': dict_to_entry_points(LEXERS),
+            'pygments.styles': dict_to_entry_points(STYLES),
         },
     )
 
