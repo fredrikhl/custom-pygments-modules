@@ -16,8 +16,10 @@ LEXERS = {
 }
 
 STYLES = {
-    'xoria256': 'styles:Xoria',
-    'onedark': 'styles:OneDark',
+    'empty': 'styles.empty:Empty',
+    'onedark': 'styles.one:OneDark',
+    'tests': 'styles:Test',
+    'xoria256': 'styles.xoria:Xoria256',
 }
 
 
@@ -29,7 +31,8 @@ def dict_to_entry_points(d):
 
 def get_packages():
     """ List of (sub)packages to install. """
-    return find_packages('.', include=('custom_pygments_modules', ))
+    return find_packages('.', include=('custom_pygments_modules',
+                                       'custom_pygments_modules.styles'))
 
 
 def get_requirements(filename):
