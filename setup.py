@@ -46,7 +46,7 @@ def get_requirements(filename):
 
 def get_textfile(filename):
     """ Get contents from a text file. """
-    with open(filename, 'rU') as fh:
+    with open(filename, 'r') as fh:
         return fh.read()
 
 
